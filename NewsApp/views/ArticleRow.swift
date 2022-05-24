@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ArticleRow: View {
     let article: Article
-    @Environment(\.openURL) private var openURL
 
     var body: some View {
         VStack (spacing: 0) {
@@ -33,13 +32,13 @@ struct ArticleRow: View {
                         .lineLimit(1)
                 }
 
-                ArrowLink()
-                    .stroke(lineWidth: 2)
-                    .frame(width: 10, height: 20)
-                    .onTapGesture {
-                        openURL(article.unwrappedURL)
-                    }
-
+                Link(destination: article.unwrappedURL) {
+                    ArrowLink()
+                        .stroke(lineWidth: 2)
+                        .frame(width: 10, height: 20)
+                }
+                .foregroundColor(.secondary)
+                .buttonStyle(.borderless)
             }
         }
         .padding(.vertical, 5)
