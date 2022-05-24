@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var articleFetcher = ArticleFetcher()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+
+        if articleFetcher.isLoading {
+            LoadingView()
+        } else if articleFetcher.errorMessage != nil {
+            ErrorView(articleFetcher: articleFetcher)
+        } else {
+            ArticleListView(articleFetcher: articleFetcher)
+        }
+
     }
 }
 
