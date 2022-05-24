@@ -44,6 +44,11 @@ struct Article: Decodable, Identifiable, Hashable {
     let publishingDate: Date?
     let content: String?
 
+    var unwrappedURL: URL {
+        guard let url = articleURL else { return URL(string: "https://newsapi.org/s/ukraine-news-api")! }
+        return url
+    }
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
