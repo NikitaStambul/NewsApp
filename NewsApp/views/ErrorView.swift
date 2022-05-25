@@ -13,6 +13,7 @@ struct ErrorView: View {
     var body: some View {
         Text(articleFetcher.errorMessage!)
             .font(.largeTitle)
+        Button("Try Again", action: articleFetcher.fetchArticles)
     }
 }
 
